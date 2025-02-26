@@ -73,13 +73,67 @@
     </style>
 </head>
 <body>
-
 <!--新增容器包裹標題圖片與點擊數-->
 <div class="container">
     <img class="title" src="imgs/popcat.svg" alt="POPCAT">
     <div class="cat-img" id="p" >0</div>
 </div>
 
+<script>
+    //用 javascript 預載張嘴圖片 op.png
+    let img = new Image();
+    img.src = 'imgs/op.png';
+
+
+    //計數器初始化
+    let count = 0;
+    //將計數器顯示到 HTML 元素,用id抓取
+    document.getElementById('p').innerText = count;
+    //顯示計數器
+    console.log(count);
+
+    //寫一個function 計數器累加
+    function add() {
+        count++;
+    }
+    //註冊滑鼠按下的事件
+    document.addEventListener('mousedown', function () {
+        //計數器累加
+        add();
+        //註冊滑鼠按下的時候，更新計數器的顯示
+        document.getElementById('p').innerText = count;
+        //切換張嘴圖片
+        document.getElementById('p').style.backgroundImage = 'url(imgs/op.png)';
+    });
+
+    //除了滑鼠，也可以用鍵盤互動
+    //註冊鍵盤按下的事件
+    document.addEventListener('keydown', function () {
+        //計數器累加
+        add();
+        //註冊鍵盤按下的時候，更新計數器的顯示
+        document.getElementById('p').innerText = count;
+        //切換張嘴圖片
+        document.getElementById('p').style.backgroundImage = 'url(imgs/op.png)';
+    });
+
+    //放開恢復成原來圖片
+    document.addEventListener('mouseup', function () {
+        document.getElementById('p').style.backgroundImage = 'url(imgs/p.png)';
+    });
+
+    //鍵盤放開恢復成原來圖片
+    document.addEventListener('keyup', function () {
+        document.getElementById('p').style.backgroundImage = 'url(imgs/p.png)';
+    });
+
+    /*當滑鼠按下，播放 pops/pop1.mp3*/
+    document.addEventListener('mousedown', function () {
+        let audio = new Audio('pops/pop1.mp3');
+        audio.play();
+    });
+
+</script>
 
 </body>
 </html>
